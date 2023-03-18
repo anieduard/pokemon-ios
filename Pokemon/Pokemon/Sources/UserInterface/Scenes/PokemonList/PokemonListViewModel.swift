@@ -26,7 +26,7 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
     enum Section: Hashable {
         enum Item: Hashable {
             case loading(Int)
-            case pokemon(Pokemon)
+            case pokemon(Int, Pokemon)
         }
         
         case loading
@@ -54,7 +54,7 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
             dataSourceSnapshot.deleteSections([.loading])
             dataSourceSnapshot.deleteSections([.pokemons])
             dataSourceSnapshot.appendSections([.pokemons])
-            dataSourceSnapshot.appendItems(pokemons.map { .pokemon($0) }, toSection: .pokemons)
+            dataSourceSnapshot.appendItems(pokemons.enumerated().map { .pokemon($0 + 1, $1) }, toSection: .pokemons)
         } catch {
             throw error
         }

@@ -9,7 +9,7 @@ import UIKit
 
 final class PokemonListViewController: UIViewController {
     
-    private let viewModel: PokemonListViewModel
+    private let viewModel: PokemonListViewModelProtocol
     
     private lazy var tableView = UITableView()
     
@@ -19,8 +19,10 @@ final class PokemonListViewController: UIViewController {
             case .loading:
                 let cell: ShimmerTableViewCell = tableView.dequeueReusableCell(for: indexPath)
                 return cell
-            case .pokemon(let pokemon):
-                let cell = tableView.dequeueReusableCell(for: indexPath)
+            case .pokemon(let index, let pokemon):
+                let cell: PokemonTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+                cell.index = index
+                cell.name = pokemon.name
                 return cell
             }
         }
@@ -30,7 +32,7 @@ final class PokemonListViewController: UIViewController {
         return dataSource
     }()
     
-    init(viewModel: PokemonListViewModel) {
+    init(viewModel: PokemonListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         
@@ -61,7 +63,7 @@ final class PokemonListViewController: UIViewController {
                 try await viewModel.loadPokemons()
                 tableView.isScrollEnabled = true
                 
-                await dataSource.apply(viewModel.dataSourceSnapshot)
+                dataSource.apply(viewModel.dataSourceSnapshot, completion: nil)
             }
         }
     }
@@ -75,7 +77,7 @@ final class PokemonListViewController: UIViewController {
             return refreshControl
         }()
         tableView.register(ShimmerTableViewCell.self)
-        tableView.register(UITableViewCell.self)
+        tableView.register(PokemonTableViewCell.self)
     }
     
     @objc private func refreshControlValueChanged() {
@@ -84,7 +86,7 @@ final class PokemonListViewController: UIViewController {
                 try await viewModel.loadPokemons()
                 
                 tableView.refreshControl?.endRefreshing()
-                await dataSource.apply(viewModel.dataSourceSnapshot)
+                dataSource.apply(viewModel.dataSourceSnapshot, completion: nil)
             }
         }
     }

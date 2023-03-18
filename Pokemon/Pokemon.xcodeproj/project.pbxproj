@@ -28,6 +28,7 @@
 		1014B77A29C5FB48001A7ED4 /* UITableView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77929C5FB48001A7ED4 /* UITableView+Helper.swift */; };
 		1014B77C29C5FEE1001A7ED4 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77B29C5FEE1001A7ED4 /* ShimmerView.swift */; };
 		1014B77E29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77D29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift */; };
+		1014B78029C60589001A7ED4 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77F29C60589001A7ED4 /* PokemonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		1014B77929C5FB48001A7ED4 /* UITableView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Helper.swift"; sourceTree = "<group>"; };
 		1014B77B29C5FEE1001A7ED4 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		1014B77D29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerTableViewCell.swift; sourceTree = "<group>"; };
+		1014B77F29C60589001A7ED4 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 		1014B75B29C5DE99001A7ED4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1014B77F29C60589001A7ED4 /* PokemonTableViewCell.swift */,
 				1014B77B29C5FEE1001A7ED4 /* ShimmerView.swift */,
 				1014B77D29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift */,
 			);
@@ -401,6 +404,7 @@
 				1014B77629C5EBA5001A7ED4 /* PokemonsService.swift in Sources */,
 				1014B76029C5DE99001A7ED4 /* AppDelegate.swift in Sources */,
 				1014B75F29C5DE99001A7ED4 /* RootCoordinator.swift in Sources */,
+				1014B78029C60589001A7ED4 /* PokemonTableViewCell.swift in Sources */,
 				1014B76729C5DF2E001A7ED4 /* PokemonListCoordinator.swift in Sources */,
 				1014B77A29C5FB48001A7ED4 /* UITableView+Helper.swift in Sources */,
 				1014B76B29C5E0E7001A7ED4 /* PokemonListViewModel.swift in Sources */,
