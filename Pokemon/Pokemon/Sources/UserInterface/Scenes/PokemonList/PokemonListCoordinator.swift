@@ -30,7 +30,8 @@ final class PokemonListCoordinator: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        add(rootViewController)
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        add(navigationController)
     }
 }
 

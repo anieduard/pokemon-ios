@@ -11,9 +11,30 @@ final class PokemonListViewController: UIViewController {
     
     private let viewModel: PokemonListViewModel
     
+    private lazy var tableView = UITableView()
+    
+    private lazy var dataSource: UITableViewDiffableDataSource<PokemonListViewModel.Section, PokemonListViewModel.Section.Item> = {
+        let dataSource = UITableViewDiffableDataSource<PokemonListViewModel.Section, PokemonListViewModel.Section.Item>(tableView: tableView) { tableView, indexPath, item in
+            switch item {
+            case .loading:
+                let cell: ShimmerTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+                return cell
+            case .pokemon(let pokemon):
+                let cell = tableView.dequeueReusableCell(for: indexPath)
+                return cell
+            }
+        }
+        
+        dataSource.defaultRowAnimation = .fade
+        
+        return dataSource
+    }()
+    
     init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        title = "PokéApp"
     }
     
     @available(*, unavailable)
@@ -21,9 +42,58 @@ final class PokemonListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = tableView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.loadData()
+        initView()
+        
+        // Apply data source with loading cells.
+        dataSource.apply(viewModel.dataSourceSnapshot)
+        
+        // Refresh data with pokemon cells.
+        Task {
+            do {
+                tableView.isScrollEnabled = false
+                try await viewModel.loadPokemons()
+                tableView.isScrollEnabled = true
+                
+                await dataSource.apply(viewModel.dataSourceSnapshot)
+            }
+        }
+    }
+    
+    private func initView() {
+        tableView.dataSource = dataSource
+        tableView.delegate = self
+        tableView.refreshControl = {
+            let refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(refreshControlValueChanged), for: .valueChanged)
+            return refreshControl
+        }()
+        tableView.register(ShimmerTableViewCell.self)
+        tableView.register(UITableViewCell.self)
+    }
+    
+    @objc private func refreshControlValueChanged() {
+        Task {
+            do {
+                try await viewModel.loadPokemons()
+                
+                tableView.refreshControl?.endRefreshing()
+                await dataSource.apply(viewModel.dataSourceSnapshot)
+            }
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension PokemonListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
