@@ -9,7 +9,11 @@ import UIKit
 
 final class RootCoordinator: UIViewController {
     
+    private let serviceCollection: ServiceCollection
+    
     init() {
+        let networkClient = NetworkClient()
+        serviceCollection = ServiceCollection(networkClient: networkClient)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,7 +25,8 @@ final class RootCoordinator: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let pokemonListCoordinator = PokemonListCoordinator()
+        let pokemonsService = serviceCollection.resolve(type: PokemonsService.self)
+        let pokemonListCoordinator = PokemonListCoordinator(pokemonsService: pokemonsService)
         add(pokemonListCoordinator)
     }
 }

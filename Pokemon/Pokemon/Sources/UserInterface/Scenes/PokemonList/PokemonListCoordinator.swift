@@ -9,13 +9,16 @@ import UIKit
 
 final class PokemonListCoordinator: UIViewController {
     
+    private let pokemonsService: PokemonsServiceProtocol
+    
     private lazy var rootViewController: UIViewController = {
-        let viewModel = PokemonListViewModel(delegate: self)
+        let viewModel = PokemonListViewModel(pokemonsService: pokemonsService, delegate: self)
         let viewController = PokemonListViewController(viewModel: viewModel)
         return viewController
     }()
     
-    init() {
+    init(pokemonsService: PokemonsServiceProtocol) {
+        self.pokemonsService = pokemonsService
         super.init(nibName: nil, bundle: nil)
     }
     

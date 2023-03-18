@@ -16,9 +16,22 @@ protocol PokemonListViewModelProtocol: AnyObject {
 }
 
 final class PokemonListViewModel: PokemonListViewModelProtocol {
+    private let pokemonsService: PokemonsServiceProtocol
     private unowned let delegate: PokemonListViewModelDelegate
     
-    init(delegate: PokemonListViewModelDelegate) {
+    init(pokemonsService: PokemonsServiceProtocol, delegate: PokemonListViewModelDelegate) {
+        self.pokemonsService = pokemonsService
         self.delegate = delegate
+    }
+    
+    func loadData() {
+        Task {
+            do {
+                let pokemons = try await pokemonsService.pokemons
+                print(pokemons)
+            } catch {
+                print(error)
+            }
+        }
     }
 }

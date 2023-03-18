@@ -24,5 +24,6 @@ final class PokemonListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.loadData()
     }
 }

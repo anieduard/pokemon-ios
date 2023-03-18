@@ -23,6 +23,8 @@
 		1014B77029C5EA53001A7ED4 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B76F29C5EA53001A7ED4 /* APIConstants.swift */; };
 		1014B77229C5EB27001A7ED4 /* ServiceCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77129C5EB27001A7ED4 /* ServiceCollection.swift */; };
 		1014B77429C5EB5B001A7ED4 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77329C5EB5B001A7ED4 /* Service.swift */; };
+		1014B77629C5EBA5001A7ED4 /* PokemonsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77529C5EBA5001A7ED4 /* PokemonsService.swift */; };
+		1014B77829C5EEBA001A7ED4 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77729C5EEBA001A7ED4 /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		1014B76F29C5EA53001A7ED4 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		1014B77129C5EB27001A7ED4 /* ServiceCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCollection.swift; sourceTree = "<group>"; };
 		1014B77329C5EB5B001A7ED4 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1014B77529C5EBA5001A7ED4 /* PokemonsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsService.swift; sourceTree = "<group>"; };
+		1014B77729C5EEBA001A7ED4 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +184,7 @@
 		1014B75629C5DE99001A7ED4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1014B77729C5EEBA001A7ED4 /* Pokemon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				1014B77329C5EB5B001A7ED4 /* Service.swift */,
+				1014B77529C5EBA5001A7ED4 /* PokemonsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -383,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1014B76429C5DED9001A7ED4 /* UIViewController+Helper.swift in Sources */,
+				1014B77629C5EBA5001A7ED4 /* PokemonsService.swift in Sources */,
 				1014B76029C5DE99001A7ED4 /* AppDelegate.swift in Sources */,
 				1014B75F29C5DE99001A7ED4 /* RootCoordinator.swift in Sources */,
 				1014B76729C5DF2E001A7ED4 /* PokemonListCoordinator.swift in Sources */,
@@ -390,6 +397,7 @@
 				1014B77229C5EB27001A7ED4 /* ServiceCollection.swift in Sources */,
 				1014B77029C5EA53001A7ED4 /* APIConstants.swift in Sources */,
 				1014B76929C5E0DB001A7ED4 /* PokemonListViewController.swift in Sources */,
+				1014B77829C5EEBA001A7ED4 /* Pokemon.swift in Sources */,
 				1014B77429C5EB5B001A7ED4 /* Service.swift in Sources */,
 				1014B76129C5DE99001A7ED4 /* SceneDelegate.swift in Sources */,
 				1014B76D29C5EA29001A7ED4 /* NetworkClient.swift in Sources */,
