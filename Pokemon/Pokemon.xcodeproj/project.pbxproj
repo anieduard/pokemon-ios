@@ -26,6 +26,8 @@
 		1014B77629C5EBA5001A7ED4 /* PokemonsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77529C5EBA5001A7ED4 /* PokemonsService.swift */; };
 		1014B77829C5EEBA001A7ED4 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77729C5EEBA001A7ED4 /* Pokemon.swift */; };
 		1014B77A29C5FB48001A7ED4 /* UITableView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77929C5FB48001A7ED4 /* UITableView+Helper.swift */; };
+		1014B77C29C5FEE1001A7ED4 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77B29C5FEE1001A7ED4 /* ShimmerView.swift */; };
+		1014B77E29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1014B77D29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		1014B77529C5EBA5001A7ED4 /* PokemonsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsService.swift; sourceTree = "<group>"; };
 		1014B77729C5EEBA001A7ED4 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		1014B77929C5FB48001A7ED4 /* UITableView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Helper.swift"; sourceTree = "<group>"; };
+		1014B77B29C5FEE1001A7ED4 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
+		1014B77D29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,8 @@
 		1014B75B29C5DE99001A7ED4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1014B77B29C5FEE1001A7ED4 /* ShimmerView.swift */,
+				1014B77D29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -403,6 +409,8 @@
 				1014B76929C5E0DB001A7ED4 /* PokemonListViewController.swift in Sources */,
 				1014B77829C5EEBA001A7ED4 /* Pokemon.swift in Sources */,
 				1014B77429C5EB5B001A7ED4 /* Service.swift in Sources */,
+				1014B77C29C5FEE1001A7ED4 /* ShimmerView.swift in Sources */,
+				1014B77E29C5FEFD001A7ED4 /* ShimmerTableViewCell.swift in Sources */,
 				1014B76129C5DE99001A7ED4 /* SceneDelegate.swift in Sources */,
 				1014B76D29C5EA29001A7ED4 /* NetworkClient.swift in Sources */,
 			);
