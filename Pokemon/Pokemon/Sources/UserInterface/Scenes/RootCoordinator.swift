@@ -8,7 +8,6 @@
 import UIKit
 
 final class RootCoordinator: UIViewController {
-    
     private let serviceCollection: ServiceCollection
     
     init() {

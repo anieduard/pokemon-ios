@@ -34,7 +34,6 @@ final class PokemonListViewController: UIViewController {
     init(viewModel: PokemonListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        
         title = "PokéApp"
     }
     

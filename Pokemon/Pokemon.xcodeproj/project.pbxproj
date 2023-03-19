@@ -36,6 +36,9 @@
 		10D47C6429C7BB790041343D /* PokemonDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D47C6329C7BB790041343D /* PokemonDetailsCoordinator.swift */; };
 		10D47C6929C7BF270041343D /* PokemonDetailsLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D47C6829C7BF270041343D /* PokemonDetailsLoadingViewController.swift */; };
 		10D47C6B29C7BF350041343D /* PokemonDetailsLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D47C6A29C7BF350041343D /* PokemonDetailsLoadingViewModel.swift */; };
+		10D47C6E29C7C2320041343D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 10D47C6D29C7C2320041343D /* Lottie */; };
+		10D47C7029C7C2550041343D /* retry-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 10D47C6F29C7C2550041343D /* retry-animation.json */; };
+		10D47C7229C7C2790041343D /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D47C7129C7C2790041343D /* ErrorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,8 @@
 		10D47C6329C7BB790041343D /* PokemonDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsCoordinator.swift; sourceTree = "<group>"; };
 		10D47C6829C7BF270041343D /* PokemonDetailsLoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailsLoadingViewController.swift; sourceTree = "<group>"; };
 		10D47C6A29C7BF350041343D /* PokemonDetailsLoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsLoadingViewModel.swift; sourceTree = "<group>"; };
+		10D47C6F29C7C2550041343D /* retry-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "retry-animation.json"; sourceTree = "<group>"; };
+		10D47C7129C7C2790041343D /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10D47C6229C7BA770041343D /* Kingfisher in Frameworks */,
+				10D47C6E29C7C2320041343D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				1014B74A29C5D9C6001A7ED4 /* Assets.xcassets */,
+				10D47C6F29C7C2550041343D /* retry-animation.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -234,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				1014B75A29C5DE99001A7ED4 /* RootCoordinator.swift */,
+				10D47C7129C7C2790041343D /* ErrorViewController.swift */,
 				1014B76529C5DF21001A7ED4 /* PokemonList */,
 			);
 			path = Scenes;
@@ -332,6 +340,7 @@
 			name = Pokemon;
 			packageProductDependencies = (
 				10D47C6129C7BA770041343D /* Kingfisher */,
+				10D47C6D29C7C2320041343D /* Lottie */,
 			);
 			productName = Pokemon;
 			productReference = 1014B70F29C5D8E3001A7ED4 /* Pokemon.app */;
@@ -407,6 +416,7 @@
 			mainGroup = 1014B70629C5D8E3001A7ED4;
 			packageReferences = (
 				10D47C6029C7BA770041343D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				10D47C6C29C7C2320041343D /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 1014B71029C5D8E3001A7ED4 /* Products */;
 			projectDirPath = "";
@@ -426,6 +436,7 @@
 			files = (
 				1014B74E29C5D9C6001A7ED4 /* Assets.xcassets in Resources */,
 				1014B71F29C5D8E5001A7ED4 /* LaunchScreen.storyboard in Resources */,
+				10D47C7029C7C2550041343D /* retry-animation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +474,7 @@
 				1014B78529C60FD5001A7ED4 /* PokemonListViewModel.swift in Sources */,
 				1014B77A29C5FB48001A7ED4 /* UITableView+Helper.swift in Sources */,
 				1014B77229C5EB27001A7ED4 /* ServiceCollection.swift in Sources */,
+				10D47C7229C7C2790041343D /* ErrorViewController.swift in Sources */,
 				1014B77029C5EA53001A7ED4 /* APIConstants.swift in Sources */,
 				1014B77829C5EEBA001A7ED4 /* Pokemon.swift in Sources */,
 				1014B77429C5EB5B001A7ED4 /* Service.swift in Sources */,
@@ -814,6 +826,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		10D47C6C29C7C2320041343D /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -821,6 +841,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 10D47C6029C7BA770041343D /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		10D47C6D29C7C2320041343D /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 10D47C6C29C7C2320041343D /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

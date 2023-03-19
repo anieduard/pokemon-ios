@@ -8,17 +8,43 @@
 import UIKit
 
 final class PokemonListCoordinator: UIViewController {
+    private enum State {
+        case content
+        case error(Error)
+    }
+    
     private let pokemonsService: PokemonsServiceProtocol
     
-    private lazy var rootViewController: UIViewController = {
-        let viewModel = PokemonListViewModel(pokemonsService: pokemonsService, delegate: self)
-        let viewController = PokemonListViewController(viewModel: viewModel)
-        return viewController
-    }()
+    private var state: State? {
+        didSet {
+            let rootViewController: UIViewController
+            
+            switch (oldValue, state) {
+            case (.none, .content), (.error, .content):
+                let viewModel = PokemonListViewModel(pokemonsService: pokemonsService, delegate: self)
+                rootViewController = PokemonListViewController(viewModel: viewModel)
+            case (.content, .error):
+                rootViewController = ErrorViewController(delegate: self)
+            default:
+                fatalError("Unexpected state change, oldValue: \(String(describing: oldValue)), newValue: \(String(describing: state))")
+            }
+            
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            self.rootViewController = navigationController
+        }
+    }
+    
+    private var rootViewController: UIViewController! {
+        didSet {
+            oldValue?.remove()
+            add(rootViewController)
+        }
+    }
     
     init(pokemonsService: PokemonsServiceProtocol) {
         self.pokemonsService = pokemonsService
         super.init(nibName: nil, bundle: nil)
+        title = "PokéApp"
     }
     
     @available(*, unavailable)
@@ -29,8 +55,9 @@ final class PokemonListCoordinator: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        add(navigationController)
+        view.backgroundColor = .systemBackground
+        
+        state = .content
     }
 }
 
@@ -43,6 +70,14 @@ extension PokemonListCoordinator: PokemonListViewModelDelegate {
     }
     
     func didFailLoadingPokemons(with error: Error) {
-        
+        state = .error(error)
+    }
+}
+
+// MARK: - ErrorViewControllerDelegate
+
+extension PokemonListCoordinator: ErrorViewControllerDelegate {
+    func didTapRetry() {
+        state = .content
     }
 }

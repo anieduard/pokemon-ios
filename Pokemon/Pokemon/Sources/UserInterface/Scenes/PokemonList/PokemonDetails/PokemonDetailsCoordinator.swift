@@ -27,7 +27,7 @@ final class PokemonDetailsCoordinator: UIViewController {
                 let viewModel = PokemonDetailsViewModel(pokemonDetails: pokemonDetails)
                 rootViewController = PokemonDetailsViewController(viewModel: viewModel)
             case (.loading, .error):
-                rootViewController = UIViewController()
+                rootViewController = ErrorViewController(delegate: self)
             default:
                 fatalError("Unexpected state change, oldValue: \(String(describing: oldValue)), newValue: \(String(describing: state))")
             }
@@ -45,8 +45,6 @@ final class PokemonDetailsCoordinator: UIViewController {
         self.pokemonsService = pokemonsService
         self.pokemon = pokemon
         super.init(nibName: nil, bundle: nil)
-        
-        title = "PokéApp"
     }
     
     @available(*, unavailable)
@@ -72,5 +70,13 @@ extension PokemonDetailsCoordinator: PokemonDetailsLoadingViewModelDelegate {
     
     func didFailLoadingPokemonDetails(with error: Error) {
         state = .error(error)
+    }
+}
+
+// MARK: - ErrorViewControllerDelegate
+
+extension PokemonDetailsCoordinator: ErrorViewControllerDelegate {
+    func didTapRetry() {
+        state = .loading
     }
 }
