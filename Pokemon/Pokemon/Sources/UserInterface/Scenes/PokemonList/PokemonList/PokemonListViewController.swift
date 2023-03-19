@@ -96,6 +96,13 @@ final class PokemonListViewController: UIViewController {
 
 extension PokemonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.didSelectItem(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.dataSourceSnapshot.numberOfItems - 1 {
+            print("PLM")
+        }
     }
 }

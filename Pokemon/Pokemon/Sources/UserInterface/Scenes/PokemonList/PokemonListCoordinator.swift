@@ -36,5 +36,19 @@ final class PokemonListCoordinator: UIViewController {
 }
 
 extension PokemonListCoordinator: PokemonListViewModelDelegate {
+    func shouldShowDetails(for pokemon: Pokemon) {
+        let viewModel = PokemonDetailsViewModel(pokemonsService: pokemonsService, delegate: self)
+        let viewController = PokemonDetailsViewController(viewModel: viewModel)
+        rootViewController.navigationController?.pushViewController(viewController, animated: true)
+    }
     
+    func didFailLoadingPokemons(with error: Error) {
+        
+    }
+}
+
+extension PokemonListCoordinator: PokemonDetailsViewModelDelegate {
+    func didFailLoadingPokemonDetails(with error: Error) {
+        
+    }
 }
