@@ -8,7 +8,6 @@
 import UIKit
 
 final class PokemonListViewController: UIViewController {
-    
     private let viewModel: PokemonListViewModelProtocol
     
     private lazy var tableView = UITableView()

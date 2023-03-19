@@ -8,7 +8,6 @@
 import UIKit
 
 final class PokemonListCoordinator: UIViewController {
-    
     private let pokemonsService: PokemonsServiceProtocol
     
     private lazy var rootViewController: UIViewController = {
@@ -35,20 +34,15 @@ final class PokemonListCoordinator: UIViewController {
     }
 }
 
+// MARK: - PokemonListViewModelDelegate
+
 extension PokemonListCoordinator: PokemonListViewModelDelegate {
     func shouldShowDetails(for pokemon: Pokemon) {
-        let viewModel = PokemonDetailsViewModel(pokemonsService: pokemonsService, pokemon: pokemon, delegate: self)
-        let viewController = PokemonDetailsViewController(viewModel: viewModel)
-        rootViewController.navigationController?.pushViewController(viewController, animated: true)
+        let coordinator = PokemonDetailsCoordinator(pokemonsService: pokemonsService, pokemon: pokemon)
+        rootViewController.navigationController?.pushViewController(coordinator, animated: true)
     }
     
     func didFailLoadingPokemons(with error: Error) {
-        
-    }
-}
-
-extension PokemonListCoordinator: PokemonDetailsViewModelDelegate {
-    func didFailLoadingPokemonDetails(with error: Error) {
         
     }
 }
