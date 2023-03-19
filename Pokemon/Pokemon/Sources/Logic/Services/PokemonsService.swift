@@ -9,6 +9,8 @@ import Foundation
 
 protocol PokemonsServiceProtocol: Service {
     var pokemons: [Pokemon] { get async throws }
+    
+    func pokemonDetails(url: URL) async throws -> PokemonDetails
 }
 
 final class PokemonsService: PokemonsServiceProtocol {
@@ -30,5 +32,10 @@ final class PokemonsService: PokemonsServiceProtocol {
     
     init(networkClient: NetworkClientProtocol) {
         self.networkClient = networkClient
+    }
+    
+    func pokemonDetails(url: URL) async throws -> PokemonDetails {
+        let request = URLRequest(url: url)
+        return try await networkClient.load(request)
     }
 }

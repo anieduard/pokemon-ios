@@ -20,18 +20,19 @@ protocol PokemonDetailsViewModelProtocol: AnyObject {
 
 final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
     private let pokemonsService: PokemonsServiceProtocol
+    private let pokemon: Pokemon
     private unowned let delegate: PokemonDetailsViewModelDelegate
     
-    init(pokemonsService: PokemonsServiceProtocol, delegate: PokemonDetailsViewModelDelegate) {
+    init(pokemonsService: PokemonsServiceProtocol, pokemon: Pokemon, delegate: PokemonDetailsViewModelDelegate) {
         self.pokemonsService = pokemonsService
+        self.pokemon = pokemon
         self.delegate = delegate
     }
     
     func loadPokemonDetails() async throws {
         do {
-//            let details = try await pokemonsService.pokemons
-            
-            
+            let pokemonDetails = try await pokemonsService.pokemonDetails(url: pokemon.url)
+            print(pokemonDetails)
         } catch {
             delegate.didFailLoadingPokemonDetails(with: error)
             throw error

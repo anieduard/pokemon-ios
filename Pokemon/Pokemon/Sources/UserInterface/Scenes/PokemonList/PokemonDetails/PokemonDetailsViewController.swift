@@ -11,8 +11,6 @@ final class PokemonDetailsViewController: UIViewController {
     
     private let viewModel: PokemonDetailsViewModelProtocol
     
-    private lazy var tableView = UITableView()
-    
     init(viewModel: PokemonDetailsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

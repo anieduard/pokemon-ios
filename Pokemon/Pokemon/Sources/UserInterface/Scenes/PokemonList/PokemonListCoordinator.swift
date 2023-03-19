@@ -37,7 +37,7 @@ final class PokemonListCoordinator: UIViewController {
 
 extension PokemonListCoordinator: PokemonListViewModelDelegate {
     func shouldShowDetails(for pokemon: Pokemon) {
-        let viewModel = PokemonDetailsViewModel(pokemonsService: pokemonsService, delegate: self)
+        let viewModel = PokemonDetailsViewModel(pokemonsService: pokemonsService, pokemon: pokemon, delegate: self)
         let viewController = PokemonDetailsViewController(viewModel: viewModel)
         rootViewController.navigationController?.pushViewController(viewController, animated: true)
     }
