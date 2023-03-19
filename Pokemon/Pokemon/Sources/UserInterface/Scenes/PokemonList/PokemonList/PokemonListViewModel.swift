@@ -19,6 +19,7 @@ protocol PokemonListViewModelProtocol: AnyObject {
     var dataSourceSnapshot: PokemonListViewModel.DataSourceSnapshot { get }
     
     func loadPokemons() async throws
+    func loadMorePokemons() async throws
     func didSelectItem(at indexPath: IndexPath)
 }
 
@@ -40,6 +41,7 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
     private let pokemonsService: PokemonsServiceProtocol
     private unowned let delegate: PokemonListViewModelDelegate
     private var pokemons: [Pokemon] = []
+    private var nextURL: URL?
     
     init(pokemonsService: PokemonsServiceProtocol, delegate: PokemonListViewModelDelegate) {
         self.pokemonsService = pokemonsService
@@ -52,7 +54,7 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
     
     func loadPokemons() async throws {
         do {
-            pokemons = try await pokemonsService.pokemons
+            (pokemons, nextURL) = try await pokemonsService.pokemons(url: nil)
             
             dataSourceSnapshot.deleteSections([.loading])
             dataSourceSnapshot.deleteSections([.pokemons])
@@ -62,6 +64,15 @@ final class PokemonListViewModel: PokemonListViewModelProtocol {
             delegate.didFailLoadingPokemons(with: error)
             throw error
         }
+    }
+    
+    func loadMorePokemons() async throws {
+        let pokemons: [Pokemon]
+        (pokemons, nextURL) = try await pokemonsService.pokemons(url: nextURL)
+        
+        self.pokemons += pokemons
+        
+        dataSourceSnapshot.appendItems(pokemons.map { .pokemon(self.pokemons.firstIndex(of: $0) ?? 0, $0) }, toSection: .pokemons)
     }
     
     func didSelectItem(at indexPath: IndexPath) {

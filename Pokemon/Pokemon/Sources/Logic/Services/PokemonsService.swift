@@ -8,8 +8,7 @@
 import Foundation
 
 protocol PokemonsServiceProtocol: Service {
-    var pokemons: [Pokemon] { get async throws }
-    
+    func pokemons(url: URL?) async throws -> ([Pokemon], URL)
     func pokemonDetails(url: URL) async throws -> PokemonDetails
 }
 
@@ -17,21 +16,20 @@ final class PokemonsService: PokemonsServiceProtocol {
     let networkClient: NetworkClientProtocol
     var path: String { APIConstants.Path.pokemon }
     
-    var pokemons: [Pokemon] {
-        get async throws {
-            let request = URLRequest(url: url)
-            
-            struct Response: Decodable {
-                let results: [Pokemon]
-            }
-            
-            let response: Response = try await networkClient.load(request)
-            return response.results
-        }
-    }
-    
     init(networkClient: NetworkClientProtocol) {
         self.networkClient = networkClient
+    }
+    
+    func pokemons(url: URL?) async throws -> ([Pokemon], URL) {
+        let request = URLRequest(url: url ?? self.url)
+        
+        struct Response: Decodable {
+            let results: [Pokemon]
+            let next: URL
+        }
+        
+        let response: Response = try await networkClient.load(request)
+        return (response.results, response.next)
     }
     
     func pokemonDetails(url: URL) async throws -> PokemonDetails {

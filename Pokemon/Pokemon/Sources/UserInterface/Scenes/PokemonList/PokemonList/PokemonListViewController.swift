@@ -100,7 +100,13 @@ extension PokemonListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == viewModel.dataSourceSnapshot.numberOfItems - 1 {
-            print("PLM")
+            Task {
+                do {
+                    try await viewModel.loadMorePokemons()
+                    
+                    dataSource.apply(viewModel.dataSourceSnapshot, completion: nil)
+                }
+            }
         }
     }
 }
