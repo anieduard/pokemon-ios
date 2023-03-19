@@ -10,13 +10,19 @@ import UIKit
 
 @MainActor
 protocol PokemonDetailsViewModelProtocol: AnyObject {
-    
+    var name: String { get }
+    var image: URL { get }
+    var types: [String] { get }
 }
 
 final class PokemonDetailsViewModel: PokemonDetailsViewModelProtocol {
-    private let pokemonDetails: PokemonDetails
+    let name: String
+    let image: URL
+    let types: [String]
     
     init(pokemonDetails: PokemonDetails) {
-        self.pokemonDetails = pokemonDetails
+        name = pokemonDetails.name.capitalized
+        image = pokemonDetails.sprites.frontDefault
+        types = pokemonDetails.types.map { $0.type.name }
     }
 }

@@ -41,6 +41,8 @@ final class PokemonListCoordinator: UIViewController {
         }
     }
     
+    override var navigationController: UINavigationController? { rootViewController as? UINavigationController }
+    
     init(pokemonsService: PokemonsServiceProtocol) {
         self.pokemonsService = pokemonsService
         super.init(nibName: nil, bundle: nil)
@@ -66,7 +68,7 @@ final class PokemonListCoordinator: UIViewController {
 extension PokemonListCoordinator: PokemonListViewModelDelegate {
     func shouldShowDetails(for pokemon: Pokemon) {
         let coordinator = PokemonDetailsCoordinator(pokemonsService: pokemonsService, pokemon: pokemon)
-        rootViewController.navigationController?.pushViewController(coordinator, animated: true)
+        navigationController?.pushViewController(coordinator, animated: true)
     }
     
     func didFailLoadingPokemons(with error: Error) {
